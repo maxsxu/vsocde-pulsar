@@ -1,0 +1,91 @@
+{
+	"name": "vscode-pulsar",
+	"displayName": "Apache Pulsar",
+	"icon": "resources/icon.png",
+	"description": "Apache Pulsar extension for Visual Studio Code",
+	"version": "0.1.0",
+	"publisher": "maxxu",
+	"author": {
+		"name": "Max Xu",
+		"email": "xuhuan@live.cn"
+	},
+	"license": "LICENSE",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/maxsxu/vscode-pulsar"
+	},
+	"engines": {
+		"vscode": "^1.68.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"pulsar",
+		"Pulsar"
+	],
+	"main": "./out/extension.js",
+	"activationEvents": [
+		"onCommand:vscode-pulsar.cluster.add",
+		"onCommand:vscode-pulsar.cluster.delete",
+		"onView:pulsarExplorer"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "vscode-pulsar.cluster.add",
+				"title": "Add Cluster",
+				"category": "Pulsar"
+			},
+			{
+				"command": "vscode-pulsar.cluster.delete",
+				"title": "Delete Cluster",
+				"category": "Pulsar"
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "pulsarView",
+					"title": "Pulsar",
+					"icon": "resources/pulsar.svg"
+				}
+			]
+		},
+		"views": {
+			"pulsarView": [
+				{
+					"id": "pulsarExplorer",
+					"name": "Explorer"
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "pulsarExplorer",
+				"contents": "No pulsar clusters found.\n[Add new cluster](command:vscode-pulsar.cluster.add)"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.68.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "16.x",
+		"@typescript-eslint/eslint-plugin": "^5.27.0",
+		"@typescript-eslint/parser": "^5.27.0",
+		"eslint": "^8.16.0",
+		"glob": "^8.0.3",
+		"mocha": "^10.0.0",
+		"typescript": "^4.7.2",
+		"@vscode/test-electron": "^2.1.3"
+	}
+}
